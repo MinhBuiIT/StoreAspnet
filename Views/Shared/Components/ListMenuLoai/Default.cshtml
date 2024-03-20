@@ -1,0 +1,23 @@
+﻿@model IEnumerable<StoreWeb.ModelsView.LoaiCustomModel>
+@{
+    var search = @ViewData["SearchStr"] as string;
+}
+<ul class="list-unstyled fruite-categorie">
+    @foreach(var item in Model)
+    {
+        <li>
+            <div class="d-flex justify-content-between fruite-name">
+                @if(String.IsNullOrEmpty(search))
+                {
+                    <a asp-controller="HangHoa" asp-action="Index" asp-route-idloai="@item.MaLoai" asp-route-page="1"><i class="fas fa-apple-alt me-2"></i>@item.TenLoai</a>
+                }else
+                {
+                    <a asp-controller="HangHoa" asp-action="Index" asp-route-idloai="@item.MaLoai" asp-route-page="1" asp-route-search="@search"><i class="fas fa-apple-alt me-2"></i>@item.TenLoai</a>
+                }
+                
+                <span>(@item.SoLuongHang)</span>
+            </div>
+        </li>
+    }
+    
+</ul>
